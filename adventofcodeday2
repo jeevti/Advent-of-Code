@@ -1,0 +1,21 @@
+with open("input2.txt") as f:
+    ranges = f.read().split(',')
+parsed = [(int(a), int(b)) for a,b in (r.split('-') for r in ranges)]
+# print(parsed)
+save = []
+def is_copy(num):
+    s = str(num)
+    n=len(s)
+    for i in range(1,n):
+        if n % i ==0 and s == s[:i] * (n // i):
+            return True
+    else:
+        return False
+
+for (start,end) in parsed:
+    for i in range(int(start),int(end)+1):
+        if is_copy(i)==True:
+            save.append(i)
+print(save)
+add = sum(save)
+print(add)
